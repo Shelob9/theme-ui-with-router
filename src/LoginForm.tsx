@@ -14,30 +14,6 @@ const LoginSchema = Yup.object().shape({
     .required('Required'),
 })
 
-function InputField({ errors, id, label, required, formikProps }) {
-  const errorId = `${id}-errors`
-  let inputProps = {
-    id,
-    name: id,
-    required,
-    onChange: formikProps.onChange,
-    onBlur: formikProps.onBlur,
-    value: formikProps.values[id],
-  }
-  if (errors) {
-    inputProps['aria-describedby'] = errorId
-  }
-  return (
-    <Box as={'div'}>
-      <Label htmlFor={id}>
-        {label} {required && <Box as={'span'}>*</Box>}
-      </Label>
-      <Input {...inputProps} mb={3} />
-      {errors.hasOwnProperty(id) && <Box as={'span'}>{errors[id]}</Box>}
-    </Box>
-  )
-}
-
 export default function LoginForm(props) {
   const { onLogin } = props
   return (
