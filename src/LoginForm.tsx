@@ -6,12 +6,12 @@ import React from 'react'
 
 const LoginSchema = Yup.object().shape({
   username: Yup.string()
-    .min(2, 'Too Short!')
-    .max(25, 'Too Long!')
-    .required('Required'),
+    .min(2, 'Username Is To Short!')
+    .max(25, 'Username Is To Long!')
+    .required('Username Is Required'),
   password: Yup.string()
-    .min(8, 'Too Short!')
-    .required('Required'),
+    .min(8, 'Username To Short!')
+    .required('Username Is Required'),
 })
 
 export default function LoginForm(props) {
@@ -49,12 +49,15 @@ export default function LoginForm(props) {
             </Label>
             <Input
               id={'password'}
-              type="text"
+              type="password"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.password}
               name="password"
             />
+            {errors && errors.password && (
+              <Box as={'span'}>{errors.password}</Box>
+            )}
           </Box>
           <Input name="submit" type={'submit'} value={'Login'} mb={3} />
         </Box>
